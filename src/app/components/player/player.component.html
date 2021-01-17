@@ -1,0 +1,68 @@
+<mat-toolbar class="mat-elevation-z2">
+
+  <div class=start fxFlex="25">
+    <audio #player>
+      <source src="assets/music/Asamnle - Graff [S Music edit].mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <div class=controls fxFlex="50" fxLayout="column">
+    <div fxLayoutAlign="center">
+      <button mat-icon-button (click)="replay()" [disabled]="canReplay">
+        <mat-icon>replay_10</mat-icon>
+      </button>
+
+      <button mat-icon-button>
+        <mat-icon>skip_previous</mat-icon>
+      </button>
+
+      <button mat-icon-button *ngIf="!mediaRun" (click)="play()">
+        <mat-icon>play_circle_outline</mat-icon>
+      </button>
+      <button mat-icon-button *ngIf="mediaRun" (click)="pause()">
+        <mat-icon>pause_circle_outline</mat-icon>
+      </button>
+
+      <button mat-icon-button>
+        <mat-icon>skip_next</mat-icon>
+      </button>
+
+      <button mat-icon-button (click)="forward()" [disabled]="canForward">
+        <mat-icon>forward_10</mat-icon>
+      </button>
+    </div>
+
+    <div fxLayoutAlign="center center">
+      <small>{{ mediaCurrentTime }}</small>
+      <mat-slider class="play" min="0" max="100" [(ngModel)]="mediaRuntime" [disabled]="mute === true" (change)="changePlayTime()"></mat-slider>
+      <small>{{ mediaDuration }}</small>
+    </div>
+  </div>
+
+  <div class=end fxFlex="25" fxLayoutAlign="end center">
+    <button style="opacity: 0.5" *ngIf="!loop" mat-icon-button (click)="mediaLoop()">
+      <mat-icon>loop</mat-icon>
+    </button>
+    <button *ngIf="loop" mat-icon-button (click)="mediaUnloop()">
+      <mat-icon>loop</mat-icon>
+    </button>
+
+    <button mat-icon-button>
+      <mat-icon>cast</mat-icon>
+      <!-- <mat-icon>cast_connected</mat-icon> -->
+    </button>
+
+    <button mat-icon-button *ngIf="mute === true" (click)="unmuteMedia()">
+      <mat-icon>volume_off</mat-icon>
+    </button>
+    <button *ngIf="mute === false" mat-icon-button (click)="muteMedia()">
+      <mat-icon *ngIf="volume <= 33">volume_mute</mat-icon>
+      <mat-icon *ngIf="volume > 33 && volume <= 66">volume_down</mat-icon>
+      <mat-icon *ngIf="volume > 66">volume_up</mat-icon>
+    </button>
+
+    <mat-slider class="volume" min="0" max="100" [(ngModel)]="volume" [disabled]="mute === true" (change)="changeVolume()"></mat-slider>
+
+  </div>
+
+</mat-toolbar>

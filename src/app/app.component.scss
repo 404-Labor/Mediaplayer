@@ -1,0 +1,19 @@
+mat-sidenav-container {
+  height: calc(100% - 98px);
+}
+
+mat-icon.right {
+  margin: 0.5rem 0 0.5rem 0.5rem;
+}
+
+mat-icon.left {
+  margin: 0.5rem 0.5rem 0.5rem 0;
+}
+
+.mat-drawer.mat-drawer-side {
+  width: 20rem;
+}
+
+.clickable {
+  cursor: pointer;
+}

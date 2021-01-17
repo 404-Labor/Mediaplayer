@@ -1,0 +1,37 @@
+<mat-sidenav-container>
+  <mat-toolbar class="mat-elevation-z8">PlayWithMe 💋</mat-toolbar>
+  <mat-sidenav #sidenavMenu opened mode="side" class="mat-elevation-z5">
+    <mat-list role="list">
+      <mat-list-item role="listitem" class="clickable" matRipple>Start</mat-list-item>
+      <mat-list-item role="listitem" class="clickable" matRipple>Browse</mat-list-item>
+      <mat-divider></mat-divider>
+      <h3 mat-subheader>Playlists</h3>
+      <mat-list-item role="listitem" class="clickable" matRipple *ngFor="let list of playlists">{{list.title}}</mat-list-item>
+      <mat-list-item role="listitem" class="clickable" matRipple (click)="newPlaylist()">
+        <mat-icon class="left">playlist_add</mat-icon>
+        Neue Playlist
+      </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+
+  <mat-sidenav #sidenavPlaylist opened mode="side" position="end" class="mat-elevation-z5">
+    <mat-list role="list">
+      <h3 mat-subheader>Playlist</h3>
+      <mat-list-item role="listitem">
+        <mat-icon class="left">drag_handle</mat-icon>
+        <span>Film Title</span>
+        <mat-icon class="right">delete_outline</mat-icon>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </mat-sidenav>
+  <!-- <router-outlet></router-outlet> -->
+  <button mat-button (click)="sidenavMenu.toggle()">sidenav.toggle()</button>
+
+  <mat-grid-list cols="4" rowHeight="2:1">
+    <mat-grid-tile *ngFor="let item of media">{{item.src}}</mat-grid-tile>
+  </mat-grid-list>
+
+</mat-sidenav-container>
+
+<player></player>
